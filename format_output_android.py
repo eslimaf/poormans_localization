@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+import sys
 import os
 import errno
 import xml.etree.ElementTree as etree
@@ -8,7 +10,7 @@ OUTPUT_DIR = 'android'
 FOLDER_BASENAME = 'values'
 XML_FILENAME = 'strings.xml'
 FR_QUALIFIER = '-fr'
-INDENTATION = '    '    
+INDENTATION = '    '
 ENCODING = 'utf-8'
 TRANSLATABLE_FALSE = 'translatable_false'
 
@@ -80,10 +82,18 @@ class AndroidFormatter:
     # Helper
     @staticmethod
     def __get_en_xml_file():
-        base_path = os.path.dirname(os.path.realpath(__file__))
-        return os.path.join(base_path, OUTPUT_DIR, FOLDER_BASENAME, XML_FILENAME)
-    
+        return resource_path(os.path.join(OUTPUT_DIR, FOLDER_BASENAME, XML_FILENAME)) 
+
     @staticmethod
     def __get_fr_xml_file():
-        base_path = os.path.dirname(os.path.realpath(__file__))
-        return os.path.join(base_path, OUTPUT_DIR, FOLDER_BASENAME + FR_QUALIFIER, XML_FILENAME)
+        return resource_path(os.path.join(OUTPUT_DIR, FOLDER_BASENAME + FR_QUALIFIER, XML_FILENAME))
+
+
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    )

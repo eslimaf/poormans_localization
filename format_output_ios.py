@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import os
 import errno
 import plistlib
@@ -51,10 +52,17 @@ class IosFormatter:
 
     @staticmethod
     def __get_en_strings_file():
-        base_path = os.path.dirname(os.path.realpath(__file__))
-        return os.path.join(base_path, OUTPUT_DIR, EN_LANG + DIR_LPROJ, EN_LANG + STRINGS_EXT)
+        return resource_path(os.path.join(OUTPUT_DIR, EN_LANG + DIR_LPROJ, EN_LANG + STRINGS_EXT))
 
     @staticmethod
     def __get_fr_strings_file():
-        base_path = os.path.dirname(os.path.realpath(__file__))
-        return os.path.join(base_path, OUTPUT_DIR, FR_LANG + DIR_LPROJ, FR_LANG + STRINGS_EXT)
+        return resource_path(os.path.join(OUTPUT_DIR, FR_LANG + DIR_LPROJ, FR_LANG + STRINGS_EXT))
+
+def resource_path(relative):
+    return os.path.join(
+        os.environ.get(
+            "_MEIPASS2",
+            os.path.abspath(".")
+        ),
+        relative
+    )
