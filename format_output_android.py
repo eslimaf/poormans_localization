@@ -8,9 +8,9 @@ OUTPUT_DIR = 'android'
 FOLDER_BASENAME = 'values'
 XML_FILENAME = 'strings.xml'
 FR_QUALIFIER = '-fr'
-INDENTATION = "    "
-ENCODING = "utf-8"
-TRANSLATABLE_FALSE = "translatable_false"
+INDENTATION = '    '    
+ENCODING = 'utf-8'
+TRANSLATABLE_FALSE = 'translatable_false'
 
 
 class AndroidFormatter:
@@ -78,10 +78,12 @@ class AndroidFormatter:
         fr_xml_file.close()
 
     # Helper
-    def __get_en_xml_file(self):
+    @staticmethod
+    def __get_en_xml_file():
         base_path = os.path.dirname(os.path.realpath(__file__))
         return os.path.join(base_path, OUTPUT_DIR, FOLDER_BASENAME, XML_FILENAME)
-
-    def __get_fr_xml_file(self):
+    
+    @staticmethod
+    def __get_fr_xml_file():
         base_path = os.path.dirname(os.path.realpath(__file__))
         return os.path.join(base_path, OUTPUT_DIR, FOLDER_BASENAME + FR_QUALIFIER, XML_FILENAME)
