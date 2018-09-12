@@ -1,0 +1,8 @@
+android_id,ios_id,en,fr,reference
+app_id,name,com.telus.myaccount,translatable_false,
+app_name,app_name,My App,Mon App,
+login_title,login_title,Login,Ouverture de session,
+login_error_dialog_title,login_failed_unlinked_account_dialog_title,Error,Erreur,
+login_oauth_error,login_oauth_error,"Sorry, there was an error logging you in. Please try again later.","Désolé, une erreur s\'est produite lors de l\'ouverture de votre session. Veuillez réessayer plus tard.",
+login_hide_details,hide_details,Hide details,Masquer les détails,
+login_show_details,show_details,Show details,Afficher les détails,
