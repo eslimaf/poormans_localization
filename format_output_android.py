@@ -14,7 +14,7 @@ FR_QUALIFIER = '-fr'
 INDENTATION = '    '
 ENCODING = 'utf-8'
 TRANSLATABLE_FALSE = 'translatable_false'
-
+EXCLUSION_ID = ''
 
 class AndroidFormatter:
     # Constructor, receives the csv reader
@@ -36,8 +36,16 @@ class AndroidFormatter:
 
         self.logger.info("Parsing Android strings")
 
+        next(self.reader)  # skip the first line
+
         # iterate csv reader
         for line in self.reader:
+            if(line[0] == EXCLUSION_ID):
+                print 'Breaking'
+                continue
+            
+            print line[0]
+
             if(line[3] == TRANSLATABLE_FALSE):
                 etree.SubElement(en_root, "string",
                                  name="{}".format(line[0]), translatable="false").text = line[2]

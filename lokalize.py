@@ -19,14 +19,12 @@ logger = Logger(tag = __name__)
 with open(filename, 'r') as csv_file:
     logger.info("Parsing %s file" % filename)
     reader = csv.reader(csv_file)
-    next(reader)  # skip the first line
 
     androidFormatter = AndroidFormatter(reader)
     androidFormatter.generate()
 
     csv_file.seek(0)
-    next(reader)
-    
+
     iosFormatter = IosFormatter(reader)
     iosFormatter.generate()
 

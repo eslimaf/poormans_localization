@@ -10,6 +10,7 @@ EN_LANG = 'en'
 FR_LANG = 'fr'
 STRINGS_FILENAME = 'Localizable.strings'
 TRANSLATABLE_FALSE = 'translatable_false'
+EXCLUSION_ID = ''
 
 
 class IosFormatter:
@@ -22,8 +23,13 @@ class IosFormatter:
         fr_strings = ''
 
         self.logger.info("Parsing iOS strings")
-        
+
+        next(self.reader)  # skip the first line
+
         for line in self.reader:
+            if(line[1] == EXCLUSION_ID):
+                continue
+            
             en_strings += '"{}" = "{}"\n'.format(line[1], line[2])
             # Use same strings if translatable false is applied
             translated_string = (line[3], line[2])[line[3] == TRANSLATABLE_FALSE]
