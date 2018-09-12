@@ -41,10 +41,7 @@ class AndroidFormatter:
         # iterate csv reader
         for line in self.reader:
             if(line[0] == EXCLUSION_ID):
-                print 'Breaking'
                 continue
-            
-            print line[0]
 
             if(line[3] == TRANSLATABLE_FALSE):
                 etree.SubElement(en_root, "string",
